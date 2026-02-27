@@ -1,9 +1,7 @@
 // ════════════════════════════════════════════════════════════════
 // Hackviser Discord RPC — Chrome Extension Popup
-// Eklenti ikonuna tıklayınca açılan menü (Standalone — no Electron needed)
+// Communicates with Desktop App Status
 // ════════════════════════════════════════════════════════════════
-
-const DISCORD_OAUTH_URL = 'https://discord.com/oauth2/authorize?client_id=1476565376513999030&response_type=code&redirect_uri=https%3A%2F%2Fhackviser-discord-rpc.vercel.app%2F&scope=identify';
 
 // Page icon mapping
 const pageIcons = {
@@ -27,32 +25,20 @@ const pageIcons = {
 };
 
 // DOM Elements
-const discordIndicator = document.querySelector('#discord-status .status-indicator');
-const discordStatusText = document.getElementById('discord-status-text');
+const appIndicator = document.getElementById('app-indicator');
+const appStatusText = document.getElementById('app-status-text');
 const activityCard = document.getElementById('activity-card');
-const activitySection = document.getElementById('activity-section');
-const discordAlert = document.getElementById('discord-alert');
-const btnLinkDiscord = document.getElementById('btn-link-discord');
-
-// Link Discord button → open OAuth2 URL
-btnLinkDiscord.addEventListener('click', (e) => {
-    e.preventDefault();
-    chrome.tabs.create({ url: DISCORD_OAUTH_URL });
-});
 
 // Get status from background script
 function refreshStatus() {
     chrome.runtime.sendMessage({ type: 'getStatus' }, (response) => {
         if (chrome.runtime.lastError || !response) {
-            setDiscordStatus(false);
+            setAppStatus(false);
             setActivityIdle();
-            showDiscordAlert(true);
             return;
         }
 
-        const isDiscordOk = response.discordLinked;
-        setDiscordStatus(isDiscordOk);
-        showDiscordAlert(!isDiscordOk);
+        setAppStatus(response.appConnected);
 
         if (response.currentPage && response.currentPage !== 'idle') {
             setActivity(
@@ -67,25 +53,17 @@ function refreshStatus() {
     });
 }
 
-function showDiscordAlert(show) {
-    if (show) {
-        discordAlert.classList.remove('hidden');
-    } else {
-        discordAlert.classList.add('hidden');
-    }
-}
-
-function setDiscordStatus(connected) {
+function setAppStatus(connected) {
     if (connected) {
-        discordIndicator.classList.remove('disconnected');
-        discordIndicator.classList.add('connected');
-        discordStatusText.textContent = 'Connected';
-        discordStatusText.style.color = '#7AFF4C';
+        appIndicator.classList.remove('disconnected');
+        appIndicator.classList.add('connected');
+        appStatusText.textContent = 'Connected (App Running)';
+        appStatusText.style.color = '#7AFF4C';
     } else {
-        discordIndicator.classList.remove('connected');
-        discordIndicator.classList.add('disconnected');
-        discordStatusText.textContent = 'Disconnected';
-        discordStatusText.style.color = '';
+        appIndicator.classList.remove('connected');
+        appIndicator.classList.add('disconnected');
+        appStatusText.textContent = 'Disconnected (Start App)';
+        appStatusText.style.color = '';
     }
 }
 
