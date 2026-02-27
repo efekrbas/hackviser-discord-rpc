@@ -3,7 +3,7 @@
 // Eklenti ikonuna tıklayınca açılan menü (Standalone — no Electron needed)
 // ════════════════════════════════════════════════════════════════
 
-const DISCORD_OAUTH_URL = 'https://discord.com/oauth2/authorize?client_id=1476565376513999030&response_type=code&redirect_uri=https%3A%2F%2Fhackviser.com&scope=identify+activities.write';
+const DISCORD_OAUTH_URL = 'https://discord.com/oauth2/authorize?client_id=1476565376513999030&response_type=code&redirect_uri=https%3A%2F%2Fhackviser-discord-rpc.vercel.app%2F&scope=identify+activities.write';
 
 // Page icon mapping
 const pageIcons = {

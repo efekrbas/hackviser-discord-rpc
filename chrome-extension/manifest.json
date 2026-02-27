@@ -10,7 +10,8 @@
     ],
     "host_permissions": [
         "*://*.hackviser.com/*",
-        "*://hackviser.com/*"
+        "*://hackviser.com/*",
+        "*://hackviser-discord-rpc.vercel.app/*"
     ],
     "background": {
         "service_worker": "background.js"
@@ -19,7 +20,8 @@
         {
             "matches": [
                 "*://*.hackviser.com/*",
-                "*://hackviser.com/*"
+                "*://hackviser.com/*",
+                "*://hackviser-discord-rpc.vercel.app/*"
             ],
             "js": [
                 "content.js"

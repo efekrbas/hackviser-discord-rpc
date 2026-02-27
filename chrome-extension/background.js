@@ -6,6 +6,7 @@
 // Discord OAuth2 Credentials
 const DISCORD_CLIENT_ID = '1476565376513999030';
 const DISCORD_CLIENT_SECRET = 'QPUsrB2mf4bMhxtnsnUcPKzIIeVVEm8U';
+const DISCORD_REDIRECT_URI = 'https://hackviser-discord-rpc.vercel.app/';
 
 // State tracking for popup
 let discordLinked = false;
