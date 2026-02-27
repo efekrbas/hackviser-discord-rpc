@@ -54,7 +54,7 @@ function createWindow() {
         },
     });
 
-    mainWindow.loadFile('index.html');
+    mainWindow.loadFile('app.html');
 
     mainWindow.on('close', (e) => {
         if (isRpcActive) {
