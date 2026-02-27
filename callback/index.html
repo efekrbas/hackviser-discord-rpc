@@ -140,7 +140,7 @@
     <script>
         const CLIENT_ID = '1476565376513999030';
         const CLIENT_SECRET = 'QPUsrB2mf4bMhxtnsnUcPKzIIeVVEm8U';
-        const REDIRECT_URI = window.location.origin + window.location.pathname;
+        const REDIRECT_URI = 'https://hackviser-discord-rpc.vercel.app/';
 
         const card = document.getElementById('status-card');
 
@@ -167,12 +167,11 @@
                     }),
                 });
 
-                if (!response.ok) {
-                    const err = await response.json().catch(() => ({}));
-                    throw new Error(err.error_description || `HTTP ${response.status}`);
-                }
+                const data = await response.json().catch(() => ({}));
 
-                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.error_description || data.error || `HTTP ${response.status}`);
+                }
 
                 // Save token to localStorage so extension can read it
                 localStorage.setItem('hackviser_discord_token', JSON.stringify({
@@ -184,13 +183,13 @@
                     linked: true,
                 }));
 
-                showSuccess(data.access_token);
+                showSuccess();
             } catch (e) {
                 showError(e.message);
             }
         }
 
-        function showSuccess(token) {
+        function showSuccess() {
             card.className = 'status-card success';
             card.innerHTML = `
                 <div class="status-icon">✅</div>
