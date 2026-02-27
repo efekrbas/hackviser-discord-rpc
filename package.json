@@ -1,0 +1,54 @@
+{
+  "name": "hackviser-discord-rpc",
+  "version": "2.0.0",
+  "description": "Hackviser Discord Rich Presence Client",
+  "main": "main.js",
+  "scripts": {
+    "start": "node launcher.js",
+    "build": "electron-builder --win portable",
+    "build:installer": "electron-builder --win nsis"
+  },
+  "keywords": [
+    "discord",
+    "rpc",
+    "hackviser",
+    "cybersecurity",
+    "electron"
+  ],
+  "author": "Hackviser",
+  "license": "MIT",
+  "dependencies": {
+    "discord-rpc": "^4.0.1",
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.hackviser.discord-rpc",
+    "productName": "Hackviser RPC",
+    "win": {
+      "target": "portable",
+      "icon": "images/icon.ico"
+    },
+    "portable": {
+      "artifactName": "HackviserRPC.exe"
+    },
+    "files": [
+      "main.js",
+      "index.html",
+      "styles.css",
+      "renderer.js",
+      "config.json",
+      "images/**/*",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "config.json",
+        "to": "config.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+    "manifest_version": 3,
+    "name": "Hackviser Discord RPC",
+    "version": "1.0.0",
+    "description": "Hackviser aktiviteni Discord Rich Presence'da göster",
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "storage"
+    ],
+    "host_permissions": [
+        "*://*.hackviser.com/*",
+        "*://hackviser.com/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.hackviser.com/*",
+                "*://hackviser.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Hackviser RPC",
+        "default_icon": {
+            "48": "icon48.png",
+            "128": "icon128.png"
+        }
+    },
+    "icons": {
+        "48": "icon48.png",
+        "128": "icon128.png"
+    }
+}

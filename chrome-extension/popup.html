@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackviser RPC</title>
+    <link rel="stylesheet" href="popup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="popup-header">
+        <div class="header-left">
+            <img src="icon128.png" alt="Hackviser" class="header-logo">
+            <span class="header-title">Hackviser</span>
+        </div>
+        <div class="header-actions">
+            <a href="https://hackviser.com" target="_blank" class="header-btn" title="Open Hackviser">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </a>
+            <button class="header-btn" id="btn-settings" title="Settings">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path
+                        d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Discord Alert (Missing Discord Account) -->
+    <div class="discord-alert" id="discord-alert">
+        <div class="alert-content">
+            <div class="alert-title">Missing Discord Account</div>
+            <div class="alert-text">Hackviser needs a linked Discord account to function properly. Please link your
+                Discord account to continue.</div>
+        </div>
+        <a href="#" id="btn-link-discord" class="alert-btn">Link Discord</a>
+    </div>
+
+    <!-- Connection Status -->
+    <div class="status-section">
+        <div class="status-item" id="discord-status">
+            <div class="status-indicator disconnected"></div>
+            <span class="status-label">Discord</span>
+            <span class="status-value" id="discord-status-text">Disconnected</span>
+        </div>
+    </div>
+
+    <!-- Current Activity -->
+    <div class="activity-section" id="activity-section">
+        <div class="section-label">CURRENT ACTIVITY</div>
+        <div class="activity-card" id="activity-card">
+            <div class="activity-card-left">
+                <img src="icon128.png" alt="Hackviser" class="activity-image">
+                <div class="activity-badge" id="activity-badge">🌐</div>
+            </div>
+            <div class="activity-info">
+                <div class="activity-name">Hackviser</div>
+                <div class="activity-details" id="activity-details">Browsing Platform</div>
+                <div class="activity-state" id="activity-state">Exploring Content</div>
+                <div class="activity-time" id="activity-time">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span id="elapsed-time">0:00 elapsed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="popup-footer">
+        <span class="footer-version">v1.0.0</span>
+        <span class="footer-separator">•</span>
+        <span class="footer-credit">Hackviser RPC Extension</span>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+{
+  "clientId": "1476565376513999030",
+  "pages": {
+    "dashboard": {
+      "name": "Dashboard",
+      "icon": "🏠",
+      "details": "Exploring Dashboard",
+      "state": "Viewing Stats"
+    },
+    "labs": {
+      "name": "Solving Labs",
+      "icon": "🔬",
+      "details": "Solving Labs",
+      "state": "Hacking in Progress..."
+    },
+    "learning": {
+      "name": "Learning Paths",
+      "icon": "�",
+      "details": "Learning Paths",
+      "state": "Studying Cyber Security"
+    },
+    "ctf": {
+      "name": "CTF Challenge",
+      "icon": "🏁",
+      "details": "CTF Challenge",
+      "state": "Capturing Flags"
+    },
+    "practice": {
+      "name": "Practice",
+      "icon": "🛡️",
+      "details": "Practice Mode",
+      "state": "Sharpening Skills"
+    },
+    "browsing": {
+      "name": "Browsing",
+      "icon": "🌐",
+      "details": "Browsing Platform",
+      "state": "Exploring Content"
+    }
+  },
+  "richPresence": {
+    "largeImageKey": "hackviser_logo",
+    "largeImageText": "Hackviser - Cyber Security Platform",
+    "smallImageKey": "hackviser_small",
+    "smallImageText": "hackviser.com",
+    "buttons": [
+      {
+        "label": "Start Training",
+        "url": "https://hackviser.com/"
+      }
+    ]
+  }
+}
