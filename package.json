@@ -37,7 +37,10 @@
       "allowToChangeInstallationDirectory": true,
       "artifactName": "HackviserRPC_Setup.exe",
       "createDesktopShortcut": "always",
-      "createStartMenuShortcut": true
+      "createStartMenuShortcut": true,
+      "installerIcon": "images/icon.ico",
+      "uninstallerIcon": "images/icon.ico",
+      "uninstallDisplayName": "Hackviser RPC"
     },
     "files": [
       "main.js",
