@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "node launcher.js",
-    "build": "electron-builder --win portable",
-    "build:installer": "electron-builder --win nsis"
+    "build": "electron-builder --win nsis",
+    "build:portable": "electron-builder --win portable"
   },
   "keywords": [
     "discord",
@@ -29,11 +29,13 @@
     "appId": "com.hackviser.discord-rpc",
     "productName": "Hackviser RPC",
     "win": {
-      "target": "portable",
+      "target": "nsis",
       "icon": "images/icon.ico"
     },
-    "portable": {
-      "artifactName": "HackviserRPC.exe"
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "HackviserRPC_Setup.exe"
     },
     "files": [
       "main.js",
