@@ -1,64 +1,51 @@
-# 🛡️ Hackviser Discord Rich Presence
+# 🛡️ Hackviser Discord Rich Presence Bridge
 
-Discord profilinizde Hackviser platformunda aktif olduğunuzu gösteren Rich Presence istemcisi.
+Discord profilinizde Hackviser platformunda (hackviser.com) aktif olduğunuzu siber güvenlik eğitimlerinizi gösteren zenginleştirilmiş, güvenli ve otomatik masaüstü-eklenti köprüsü.
 
 ![Hackviser](images/1679414162991.jpg)
 
-## 🚀 Kurulum
+## 🚀 Çalışma Mantığı
 
-### Gereksinimler
-- [Node.js](https://nodejs.org/) (v16+)
-- [Discord](https://discord.com/) masaüstü uygulaması
+Proje **iki bileşenden** oluşmaktadır:
+1. **Masaüstü Eğitim Köprüsü:** Sistemi taramayan, sadece Chrome eklentisinden gelecek bilgileri bekleyerek Discord'a aktaran güvenlik odaklı hafif bir arka plan yazılımı.
+2. **Chrome Geliştirici Eklentisi:** Yalnızca Hackviser platformlarında çalışıp tarayıcı sekme bilgilerini okuyan ve Masaüstü köprüsüyle haberleşen yerel Chrome eklentisi.
 
-### Adımlar
+## 📦 Kurulum ve Çalıştırma
 
-```bash
-# 1. Bağımlılıkları yükle
-npm install
+### 1- Uygulama Kurulumu (Setup Ekranı)
+Sunucu üzerinden veya derlenerek elde edeceğiniz **`HackviserRPC_Setup.exe`** dosyasını çalıştırın.
+- Kurulum tamamlandığında uygulamanız Başlat Menüsü'ne ve Masaüstünüze eklenecektir. Uygulamayı çalıştırdığınızda sağ alt köşede (Sistem tepsisi) arka planda sessizce beklemeye başlar.
 
-# 2. Uygulamayı çalıştır
-npm start
-```
+### 2- Chrome Eklentisini Ekleme (Geliştirici Modu)
+Eklenti onay beklediği sürece manuel olarak tarayıcıya eklenmelidir:
+1. Kaynak dosyalardan veya siteden indirilen `HackviserExtension.zip` dosyasını bir klasöre çıkartın.
+2. Web tarayıcınızda (Chrome, Brave vb.) `chrome://extensions/` adresine gidin.
+3. Sağ üstten **Geliştirici Modunu (Developer Mode)** aktif edin.
+4. Çıkan menüden "Paketlenmemiş Öğe Yükle (Load Unpacked)" butonuna tıklayın ve çıkarttığınız klasörü seçin.
+5. İşlem Tamamlandı! Eğitimlere başladığınızda profiliniz parlayacak.
 
-## 🔧 Yapılandırma
+## 🛠 Geliştirici (Derleme) Bilgileri
 
-`config.json` dosyasını düzenleyerek Rich Presence ayarlarını özelleştirebilirsiniz:
-
-| Alan | Açıklama |
-|------|----------|
-| `details` | Üst satır metni |
-| `state` | Alt satır metni |
-| `largeImageKey` | Discord Developer Portal'daki büyük resim anahtarı |
-| `buttons` | Profildeki butonlar (max 2) |
-
-## 📦 EXE Olarak Derleme
+Projeyi kendi bilgisayarınızda derlemek isterseniz:
 
 ```bash
-# Bağımlılıkları yükle (ilk seferde)
+# Bağımlılıkları yükle (Sistemde node ve npm kurulu olmalıdır)
 npm install
 
-# EXE dosyasını oluştur
+# İsteğe Bağlı: Dağıtılabilir Kurulum .exe si oluşturmak için (NSIS Setup)
 npm run build
-```
 
-Oluşturulan `HackviserRPC.exe` dosyasını doğrudan çalıştırabilirsiniz.
+# İsteğe Bağlı: Taşınabilir tek .exe oluşturmak için (Portable)
+npm run build:portable
+```
 
 ## 📋 Özellikler
 
-- ✅ Discord Rich Presence desteği
-- ✅ Otomatik yeniden bağlanma
-- ✅ Renkli konsol çıktıları
-- ✅ Geçen süre göstergesi
-- ✅ Hackviser web sitesine buton bağlantıları
-- ✅ EXE olarak derlenebilir
-
-## ⚙️ Discord Developer Portal
-
-1. [Discord Developer Portal](https://discord.com/developers/applications) → Uygulamanıza gidin
-2. **Rich Presence → Art Assets** → Hackviser logosunu yükleyin
-   - Büyük resim key: `hackviser_logo`
-   - Küçük resim key: `hackviser_small`
-3. Kaydedin
+- ✅ Masaüstü ve Tarayıcı arası izole/lokal güvenlik köprüsü özelliği
+- ✅ Chrome Uzantı (V3) mimarisi ile kusursuz anlık tarayıcı analizi
+- ✅ Setup halinde yükleme ve otomatik başlat menüsü/masaüstü kısayolu
+- ✅ Dinamik, site ortamına göre otomatik İngilizce / Türkçe web sayfası (i18n)
+- ✅ Otomatik yeniden bağlanma yeteneği ve gizlilik dostu yapı
 
 ---
 
