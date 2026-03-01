@@ -35,7 +35,9 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "artifactName": "HackviserRPC_Setup.exe"
+      "artifactName": "HackviserRPC_Setup.exe",
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true
     },
     "files": [
       "main.js",
