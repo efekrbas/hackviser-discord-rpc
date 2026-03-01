@@ -34,7 +34,7 @@ let isConnected = false;
 let isRpcActive = false;
 let isChromeConnected = false;
 let currentPage = 'idle';
-let currentDetails = 'Browsing Platform';
+let currentDetails = '';
 let currentState = '';
 
 let startTimestamp = new Date();
@@ -212,12 +212,12 @@ function updateActivity() {
         instance: false,
     };
 
-    if (currentDetails) {
+    if (currentDetails && currentDetails.trim() !== '') {
         activity.details = currentDetails;
     }
 
     // State: sayfa state'i (Discord kullanıcı adı veya Lock bilgisi gönderilmez)
-    if (currentState) {
+    if (currentState && currentState.trim() !== '') {
         activity.state = currentState;
     }
 

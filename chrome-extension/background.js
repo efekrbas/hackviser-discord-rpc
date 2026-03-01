@@ -73,6 +73,9 @@ function parseHackviserUrl(url) {
         }
 
         if (pathname.startsWith('/home') || pathname === '/') {
+            if (hostname === 'hackviser.com') {
+                return { page: 'browsing', details: '', state: '', sensitive: false };
+            }
             return { page: 'home', details: 'Home Page', state: 'Viewing Home Page', sensitive: false };
         }
 
@@ -130,7 +133,7 @@ function parseHackviserUrl(url) {
             return { page: 'leaderboard', details: 'Leaderboard', state: 'Checking Rankings', sensitive: false };
         }
 
-        return { page: 'browsing', details: 'Browsing Platform', state: 'Exploring Content', sensitive: false };
+        return { page: 'browsing', details: 'Browsing Platform', state: '', sensitive: false };
     } catch (e) {
         return null;
     }

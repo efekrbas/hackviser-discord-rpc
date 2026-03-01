@@ -34,8 +34,8 @@
     "browsing": {
       "name": "Browsing",
       "icon": "🌐",
-      "details": "Browsing Platform",
-      "state": "Exploring Content"
+      "details": "",
+      "state": ""
     }
   },
   "richPresence": {
@@ -45,7 +45,7 @@
     "smallImageText": "hackviser.com",
     "buttons": [
       {
-        "label": "Start Training",
+        "label": "Learn Cybersecurity",
         "url": "https://hackviser.com/"
       }
     ]

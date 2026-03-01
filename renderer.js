@@ -113,7 +113,7 @@ btnStop.addEventListener('click', () => {
     ipcRenderer.send('stop-rpc');
     btnStop.classList.add('hidden');
     btnStart.classList.remove('hidden');
-    userInfo.classList.add('hidden');
+    // We intentionally do not hide userInfo here, so the user card stays visible
     if (elapsedInterval) clearInterval(elapsedInterval);
     previewElapsed.textContent = '0:00';
 });
@@ -191,6 +191,11 @@ if (initialState.isConnected) {
             }
         }
     }
+}
+
+if (initialState.isChromeConnected) {
+    chromeBadge.classList.add('connected');
+    chromeBadge.querySelector('.status-text').textContent = 'Chrome: Connected';
 }
 
 if (initialState.currentDetails) {
