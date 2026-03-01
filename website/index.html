@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackviser Discord RPC</title>
+    <meta name="description"
+        content="Hackviser Discord RPC eklentisi ve masaüstü bağlantı uygulaması ile Discord profilinizi eşzamanlı olarak siber güvenlik eğitimlerinize bağlayın.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --surface: #1e222a;
+            --primary: #00ff88;
+            --primary-hover: #00cc6a;
+            --text-main: #ffffff;
+            --text-muted: #a0a6b1;
+            --discord: #5865F2;
+            --discord-hover: #4752C4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 5rem 1.5rem 4rem;
+            position: relative;
+        }
+
+        /* Abstract Background Glow */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.15) 0%, rgba(15, 17, 21, 0) 70%);
+            z-index: -1;
+            filter: blur(40px);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 255, 136, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a6b1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        /* Install Steps */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 400px;
+            z-index: 1;
+        }
+
+        .step-card {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 255, 136, 0.3);
+        }
+
+        .step-number {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .step-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            gap: 0.5rem;
+        }
+
+        .btn-discord {
+            background-color: var(--discord);
+            color: white;
+            box-shadow: 0 4px 14px rgba(88, 101, 242, 0.3);
+        }
+
+        .btn-discord:hover {
+            background-color: var(--discord-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #000;
+            box-shadow: 0 4px 14px rgba(0, 255, 136, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Features */
+        .features {
+            padding: 3rem 1.5rem;
+            background: linear-gradient(180deg, var(--bg-color) 0%, rgba(30, 34, 42, 0.5) 100%);
+            flex-grow: 1;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-text h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* SVG Icons */
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Responsive Breakpoints */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.25rem;
+            }
+
+            .steps {
+                flex-direction: row;
+                max-width: 900px;
+            }
+
+            .step-card {
+                flex: 1;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem;
+            }
+
+            .hero {
+                padding: 6rem 2rem 5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <img src="../images/1679414162991.jpg" alt="Hackviser Logo" class="logo">
+        <h1>Discord Rich Presence</h1>
+        <p class="subtitle">Hackviser platformundaki eğitim sürecinizi ve laboratuvar başarılarınızı anında Discord
+            profilinize yansıtın. Sadece iki basit adımda kurulumu tamamlayın.</p>
+
+        <div class="steps">
+            <!-- Step 1: Desktop App -->
+            <div class="step-card">
+                <div class="step-number">Adım 1</div>
+                <h2 class="step-title">Köprü Uygulamasını Kurun</h2>
+                <p class="step-desc">Discord ile iletişimi sağlamak için güvenli ve arka planda çalışan ufak masaüstü
+                    bağlantı aracını indirin ve kurun.</p>
+                <a href="../dist/HackviserRPC.exe" download class="btn btn-discord">
+                    <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 16L7 11L8.4 9.55L11 12.15V4H13V12.15L15.6 9.55L17 11L12 16ZM6 20C5.45 20 4.97917 19.8042 4.5875 19.4125C4.19583 19.0208 4 18.55 4 18V15H6V18H18V15H20V18C20 18.55 19.8042 19.0208 19.4125 19.4125C19.0208 19.8042 18.55 20 18 20H6Z" />
+                    </svg>
+                    Uygulamayı İndir
+                </a>
+            </div>
+
+            <!-- Step 2: Chrome Extension -->
+            <div class="step-card">
+                <div class="step-number">Adım 2</div>
+                <h2 class="step-title">Chrome Eklentisini Ekleyin</h2>
+                <p class="step-desc">Web tarayıcınızdaki etkileşimlerinizi okuyup masaüstü uygulamasına anında iletecek
+                    olan resmi Google Chrome eklentisini kurun.</p>
+                <a href="https://chrome.google.com/webstore" target="_blank" class="btn btn-primary" id="btn-extension">
+                    <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1.894-1.928a8.038 8.038 0 0 0 3.788 0 8.006 8.006 0 0 0-1.894-6.284 8.006 8.006 0 0 0-1.894 6.284zM20.072 12a8.044 8.044 0 0 0-1.503-4.717 8.006 8.006 0 0 0-5.46 3.655 8.006 8.006 0 0 0 6.963 1.062zm-3.328-7.072A8.044 8.044 0 0 0 12 3.928a8.044 8.044 0 0 0-4.744 1.523 8.006 8.006 0 0 0 3.655 5.46 8.006 8.006 0 0 0 5.833-5.983zM3.928 12a8.044 8.044 0 0 0 1.503 4.717 8.006 8.006 0 0 0 5.46-3.655 8.006 8.006 0 0 0-6.963-1.062zM7.256 19.072A8.044 8.044 0 0 0 12 20.072a8.044 8.044 0 0 0 4.744-1.503 8.006 8.006 0 0 0-3.655-5.46 8.006 8.006 0 0 0-5.833 5.963z" />
+                    </svg>
+                    Eklentiyi Kur (Chrome)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🚀</div>
+                <div class="feature-text">
+                    <h3>Anında Senkronizasyon</h3>
+                    <p>Masaüstü uygulaması ve eklenti tam zamanlı olarak haberleşir; saniye saniye değişen modüller
+                        anlık olarak Discord'unuza yansır.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-text">
+                    <h3>Gizlilik Öncelikli</h3>
+                    <p>Siz sadece hackviser.com adresindeyken çalışır. Diğer hiçbir web sitenize veya verinize erişmez,
+                        son derece saygılıdır.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🛠️</div>
+                <div class="feature-text">
+                    <h3>Kolay Kurulum</h3>
+                    <p>Sadece iki adımlı eşleştirme. Masaüstü uygulamasını arka plana atın, otomatik çalışmaya devam
+                        etsin.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-text">
+                    <h3>Harika Görünüm</h3>
+                    <p>Tamamen Hackviser temasına uygun profesyonel profil kartıyla Discord sunucularında siber güvenlik
+                        bilginizi gösterin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
