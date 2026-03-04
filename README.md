@@ -1,4 +1,4 @@
-# 🛡️ Hackviser Discord Rich Presence Bridge
+# 🛡️ Hackviser Discord Rich Presence 
 
 Discord profilinizde Hackviser platformunda (hackviser.com) aktif olduğunuzu siber güvenlik eğitimlerinizi gösteren zenginleştirilmiş, güvenli ve otomatik masaüstü-eklenti köprüsü.
 
@@ -49,6 +49,6 @@ npm run build:portable
 
 ---
 
-**Hackviser** - Cyber Security Training Platform | [hackviser.com](https://hackviser.com)
+**Hackviser** - Cyber Security Learning Platform | [hackviser.com](https://hackviser.com)
 
 maked for hackviser 💚
