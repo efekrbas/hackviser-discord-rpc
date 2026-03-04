@@ -1,51 +1,51 @@
 # Hackviser Discord Rich Presence 
 
-Discord profilinizde Hackviser platformunda (hackviser.com) aktif olduğunuzu siber güvenlik eğitimlerinizi gösteren zenginleştirilmiş, güvenli ve otomatik masaüstü-eklenti köprüsü.
+Show your active Hackviser (hackviser.com) training sessions on your Discord profile with this secure, automated desktop-extension bridge.
 
 ![Hackviser](images/1679414162991.jpg)
 
-## 🚀 Çalışma Mantığı
+## 🚀 How It Works
 
-Proje **iki bileşenden** oluşmaktadır:
-1. **Masaüstü Eğitim Köprüsü:** Sistemi taramayan, sadece Chrome eklentisinden gelecek bilgileri bekleyerek Discord'a aktaran güvenlik odaklı hafif bir arka plan yazılımı.
-2. **Chrome Geliştirici Eklentisi:** Yalnızca Hackviser platformlarında çalışıp tarayıcı sekme bilgilerini okuyan ve Masaüstü köprüsüyle haberleşen yerel Chrome eklentisi.
+The project consists of **two components**:
+1. **Desktop Bridge App:** A lightweight, security-focused background application that does not scan your system — it simply listens for data from the Chrome extension and relays it to Discord.
+2. **Chrome Developer Extension:** A local Chrome extension that only works on Hackviser platforms, reads browser tab information, and communicates with the Desktop Bridge.
 
-## 📦 Kurulum ve Çalıştırma
+## 📦 Installation & Setup
 
-### 1- Uygulama Kurulumu (Setup Ekranı)
-Sunucu üzerinden veya derlenerek elde edeceğiniz **`HackviserRPC_Setup.exe`** dosyasını çalıştırın.
-- Kurulum tamamlandığında uygulamanız Başlat Menüsü'ne ve Masaüstünüze eklenecektir. Uygulamayı çalıştırdığınızda sağ alt köşede (Sistem tepsisi) arka planda sessizce beklemeye başlar.
+### 1- App Installation (Setup Installer)
+Run the **`HackviserRPC_Setup.exe`** file obtained from the website or by building the project.
+- Once installed, the application will be added to your Start Menu and Desktop. When launched, it quietly runs in the background in the system tray (bottom-right corner).
 
-### 2- Chrome Eklentisini Ekleme (Geliştirici Modu)
-Eklenti onay beklediği sürece manuel olarak tarayıcıya eklenmelidir:
-1. Kaynak dosyalardan veya siteden indirilen `HackviserExtension.zip` dosyasını bir klasöre çıkartın.
-2. Web tarayıcınızda (Chrome, Brave vb.) `chrome://extensions/` adresine gidin.
-3. Sağ üstten **Geliştirici Modunu (Developer Mode)** aktif edin.
-4. Çıkan menüden "Paketlenmemiş Öğe Yükle (Load Unpacked)" butonuna tıklayın ve çıkarttığınız klasörü seçin.
-5. İşlem Tamamlandı! Eğitimlere başladığınızda profiliniz parlayacak.
+### 2- Adding the Chrome Extension (Developer Mode)
+Since the extension is pending approval, it must be manually loaded into your browser:
+1. Extract the `HackviserExtension.zip` file (downloaded from the source files or website) into a folder.
+2. Open `chrome://extensions/` in your web browser (Chrome, Brave, etc.).
+3. Enable **Developer Mode** from the top-right toggle.
+4. Click "Load Unpacked" and select the extracted folder.
+5. Done! Your Discord profile will light up when you start your training sessions.
 
-## 🛠 Geliştirici (Derleme) Bilgileri
+## 🛠 Developer (Build) Information
 
-Projeyi kendi bilgisayarınızda derlemek isterseniz:
+If you'd like to build the project on your own machine:
 
 ```bash
-# Bağımlılıkları yükle (Sistemde node ve npm kurulu olmalıdır)
+# Install dependencies (Node.js and npm must be installed on your system)
 npm install
 
-# İsteğe Bağlı: Dağıtılabilir Kurulum .exe si oluşturmak için (NSIS Setup)
+# Optional: Create a distributable installer .exe (NSIS Setup)
 npm run build
 
-# İsteğe Bağlı: Taşınabilir tek .exe oluşturmak için (Portable)
+# Optional: Create a portable single .exe (Portable)
 npm run build:portable
 ```
 
-## 📋 Özellikler
+## 📋 Features
 
-- ✅ Masaüstü ve Tarayıcı arası izole/lokal güvenlik köprüsü özelliği
-- ✅ Chrome Uzantı (V3) mimarisi ile kusursuz anlık tarayıcı analizi
-- ✅ Setup halinde yükleme ve otomatik başlat menüsü/masaüstü kısayolu
-- ✅ Dinamik, site ortamına göre otomatik İngilizce / Türkçe web sayfası (i18n)
-- ✅ Otomatik yeniden bağlanma yeteneği ve gizlilik dostu yapı
+- ✅ Isolated/local security bridge between Desktop and Browser
+- ✅ Seamless real-time browser analysis with Chrome Extension (V3) architecture
+- ✅ Setup installer with automatic Start Menu/Desktop shortcut creation
+- ✅ Dynamic, automatic English/Turkish web page based on browser language (i18n)
+- ✅ Auto-reconnect capability and privacy-friendly design
 
 ---
 
