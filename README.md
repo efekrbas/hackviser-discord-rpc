@@ -1,4 +1,4 @@
-# 🛡️ Hackviser Discord Rich Presence 
+# Hackviser Discord Rich Presence 
 
 Discord profilinizde Hackviser platformunda (hackviser.com) aktif olduğunuzu siber güvenlik eğitimlerinizi gösteren zenginleştirilmiş, güvenli ve otomatik masaüstü-eklenti köprüsü.
 
