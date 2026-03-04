@@ -286,9 +286,8 @@ function setupIpcHandlers() {
     });
 
     ipcMain.on('close-window', () => {
-        isRpcActive = false;
-        disconnectRpc();
-        app.quit();
+        // Kapat butonuna basınca tamamen kapatma — tray'a küçült
+        if (mainWindow) mainWindow.hide();
     });
 
     ipcMain.on('minimize-to-taskbar', () => {

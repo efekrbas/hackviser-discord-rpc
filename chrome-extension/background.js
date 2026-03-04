@@ -126,7 +126,7 @@ function parseHackviserUrl(url) {
         }
 
         if (pathname.startsWith('/profile') || pathname.startsWith('/user') || pathname.startsWith('/settings')) {
-            return { page: 'profile', details: 'Viewing Profile', state: null, sensitive: false };
+            return { page: 'profile', details: 'Profile', state: 'Viewing Profile', sensitive: false };
         }
 
         if (pathname.startsWith('/leaderboard') || pathname.startsWith('/scoreboard') || pathname.startsWith('/ranking')) {
