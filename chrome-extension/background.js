@@ -162,13 +162,8 @@ function checkActiveTab() {
         if (pageData) {
             currentTabId = tab.id;
             sendToApp(pageData.page, pageData.details, pageData.state, pageData.sensitive);
-        } else {
-            // Eğer aktif sekme hackviser değilse ve en son hackviser'daysak idle yap
-            if (currentPage !== 'idle') {
-                sendToApp('idle', '', '', false);
-                currentTabId = null;
-            }
         }
+        // Hackviser olmayan sekmeye geçildiğinde son presence'ı koru, idle gönderme
     });
 }
 
@@ -210,3 +205,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // ── Init ───────────────────────────────────────────────────────
 connectWebSocket();
+
+// ── Keep-Alive: Service Worker'ın uyumasını engelle ────────────
+// Chrome MV3 service worker ~30sn sonra dormant olur, bu da WebSocket'i kapatır
+chrome.alarms.create('keepAlive', { periodInMinutes: 0.4 });
+chrome.alarms.onAlarm.addListener((alarm) => {
+    if (alarm.name === 'keepAlive') {
+        // WebSocket bağlantısı yoksa yeniden bağlan
+        if (!ws || ws.readyState !== WebSocket.OPEN) {
+            connectWebSocket();
+        }
+    }
+});

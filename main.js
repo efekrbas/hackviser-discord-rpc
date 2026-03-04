@@ -120,13 +120,9 @@ function createWebSocketServer() {
 
         socket.on('close', () => {
             isChromeConnected = false;
-            currentPage = 'idle';
-            currentDetails = '';
-            currentState = '';
+            // Chrome bağlantısı koptuğunda presence'ı silme — son aktiviteyi koru
             sendToRenderer('chrome-status', { connected: false });
-            sendToRenderer('page-update', { page: 'idle', details: '', state: '', sensitive: false });
-            if (isConnected) updateActivity();
-            console.log('[WS] Chrome extension bağlantısı kesildi');
+            console.log('[WS] Chrome extension bağlantısı kesildi — presence korunuyor');
         });
     });
 
@@ -208,7 +204,13 @@ function updateActivity() {
 
     const rp = config.richPresence;
 
+    // Discord API 2 buton göstermek için hem details hem state gerektirir
+    const details = (currentDetails && currentDetails.trim() !== '') ? currentDetails : 'Browsing Hackviser';
+    const state = (currentState && currentState.trim() !== '') ? currentState : 'hackviser.com';
+
     const activity = {
+        details: details,
+        state: state,
         startTimestamp: startTimestamp,
         largeImageKey: rp.largeImageKey,
         largeImageText: rp.largeImageText,
@@ -216,15 +218,6 @@ function updateActivity() {
         smallImageText: rp.smallImageText,
         instance: false,
     };
-
-    if (currentDetails && currentDetails.trim() !== '') {
-        activity.details = currentDetails;
-    }
-
-    // State: sayfa state'i (Discord kullanıcı adı veya Lock bilgisi gönderilmez)
-    if (currentState && currentState.trim() !== '') {
-        activity.state = currentState;
-    }
 
     if (rp.buttons && rp.buttons.length > 0) {
         activity.buttons = rp.buttons.slice(0, 2);
