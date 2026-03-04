@@ -120,7 +120,12 @@ function createWebSocketServer() {
 
         socket.on('close', () => {
             isChromeConnected = false;
+            currentPage = 'idle';
+            currentDetails = '';
+            currentState = '';
             sendToRenderer('chrome-status', { connected: false });
+            sendToRenderer('page-update', { page: 'idle', details: '', state: '', sensitive: false });
+            if (isConnected) updateActivity();
             console.log('[WS] Chrome extension bağlantısı kesildi');
         });
     });

@@ -47,6 +47,10 @@
       {
         "label": "Learn Cybersecurity",
         "url": "https://hackviser.com/"
+      },
+      {
+        "label": "Hackviser Discord Rpc",
+        "url": "https://hackviser-discord-rpc.vercel.app/"
       }
     ]
   }

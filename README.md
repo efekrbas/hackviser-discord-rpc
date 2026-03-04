@@ -50,3 +50,5 @@ npm run build:portable
 ---
 
 **Hackviser** - Cyber Security Training Platform | [hackviser.com](https://hackviser.com)
+
+maked for hackviser 💚
