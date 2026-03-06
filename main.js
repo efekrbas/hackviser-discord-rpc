@@ -138,9 +138,9 @@ function handlePageUpdate(data) {
         // Hackviser'da değil — son aktiviteyi koru, hiçbir şey yapma
         return;
     } else if (data.sensitive) {
-        // Login sayfası — hassas bilgi gösterme
+        // Login sayfası — hassas bilgi gösterme, sadece 'Logging In' göster
         currentPage = data.page;
-        currentDetails = data.details || 'Logging In';
+        currentDetails = 'Logging In';
         currentState = '';
     } else {
         currentPage = data.page;
@@ -204,13 +204,11 @@ function updateActivity() {
 
     const rp = config.richPresence;
 
-    // Discord API 2 buton göstermek için hem details hem state gerektirir
-    const details = (currentDetails && currentDetails.trim() !== '') ? currentDetails : 'Browsing Hackviser';
-    const state = (currentState && currentState.trim() !== '') ? currentState : 'hackviser.com';
+    // Discord activity
+    const details = (currentDetails && currentDetails.trim() !== '') ? currentDetails : null;
+    const state = (currentState && currentState.trim() !== '') ? currentState : null;
 
     const activity = {
-        details: details,
-        state: state,
         startTimestamp: startTimestamp,
         largeImageKey: rp.largeImageKey,
         largeImageText: rp.largeImageText,
@@ -218,6 +216,14 @@ function updateActivity() {
         smallImageText: rp.smallImageText,
         instance: false,
     };
+
+    if (details) {
+        activity.details = details;
+    }
+
+    if (state) {
+        activity.state = state;
+    }
 
     if (rp.buttons && rp.buttons.length > 0) {
         activity.buttons = rp.buttons.slice(0, 2);

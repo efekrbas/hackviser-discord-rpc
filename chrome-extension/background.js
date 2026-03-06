@@ -74,7 +74,7 @@ function parseHackviserUrl(url) {
 
         if (pathname.startsWith('/home') || pathname === '/') {
             if (hostname === 'hackviser.com') {
-                return { page: 'browsing', details: '', state: '', sensitive: false };
+                return { page: 'home', details: '', state: '', sensitive: false };
             }
             return { page: 'home', details: 'Home Page', state: 'Viewing Home Page', sensitive: false };
         }
