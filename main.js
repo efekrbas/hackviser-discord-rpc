@@ -137,18 +137,28 @@ function handlePageUpdate(data) {
     if (data.page === 'idle') {
         // Hackviser'da değil — son aktiviteyi koru, hiçbir şey yapma
         return;
-    } else if (data.sensitive) {
-        // Login sayfası — hassas bilgi gösterme, sadece 'Logging In' göster
-        currentPage = data.page;
-        currentDetails = 'Logging In';
-        currentState = '';
-    } else {
-        currentPage = data.page;
-        currentDetails = data.details !== undefined ? data.details : 'Browsing Platform';
-        currentState = data.state !== undefined ? data.state : '';
     }
 
+    let newPage = data.page;
+    let newDetails = data.details !== undefined ? data.details : 'Browsing Platform';
+    let newState = data.state !== undefined ? data.state : '';
+
+    if (data.sensitive) {
+        // Login sayfası — hassas bilgi gösterme, sadece 'Logging In' göster
+        newDetails = 'Logging In';
+        newState = '';
+    }
+
+    // Eğer sayfa/durum değişmediyse hiçbir şey yapma (süreyi sıfırlama)
+    if (currentPage === newPage && currentDetails === newDetails && currentState === newState) {
+        return;
+    }
+
+    currentPage = newPage;
+    currentDetails = newDetails;
+    currentState = newState;
     startTimestamp = new Date();
+
     sendToRenderer('page-update', {
         page: currentPage,
         details: currentDetails,
