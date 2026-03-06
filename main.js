@@ -160,39 +160,80 @@ function handlePageUpdate(data) {
 }
 
 // ── Discord RPC ────────────────────────────────────────────────
+let reconnectTimer = null;
+
 function createRpcClient() {
     rpc = new RPC.Client({ transport: 'ipc' });
 
     rpc.on('ready', () => {
+        console.log('[RPC] Connected to Discord');
         isConnected = true;
         sendToRenderer('rpc-status', { connected: true, user: rpc.user });
         updateActivity();
+
+        // Transport kapanması (Discord restart/Ctrl+R)
+        rpc.transport.once('close', () => {
+            console.log('[RPC] Transport closed (Discord restarted/closed)');
+            scheduleReconnect();
+        });
     });
 
     rpc.on('disconnected', () => {
-        isConnected = false;
-        sendToRenderer('rpc-status', { connected: false });
-        setTimeout(() => connectRpc(), 5000);
+        console.log('[RPC] Disconnected from Discord');
+        scheduleReconnect();
     });
 }
 
+function scheduleReconnect() {
+    if (reconnectTimer) return; // Zaten bekleniyorsa tekrar kurma
+    isConnected = false;
+    sendToRenderer('rpc-status', { connected: false });
+
+    if (rpc) {
+        try { rpc.destroy().catch(() => { }); } catch (e) { }
+        rpc = null;
+    }
+
+    console.log('[RPC] Scheduling reconnect in 5 seconds...');
+    reconnectTimer = setTimeout(() => {
+        reconnectTimer = null;
+        connectRpc();
+    }, 5000);
+}
+
 function connectRpc() {
-    if (!rpc) createRpcClient();
-    rpc.login({ clientId: CLIENT_ID }).catch(() => {
-        isConnected = false;
-        sendToRenderer('rpc-status', { connected: false });
-        setTimeout(() => connectRpc(), 5000);
+    if (reconnectTimer) {
+        clearTimeout(reconnectTimer);
+        reconnectTimer = null;
+    }
+
+    if (rpc) {
+        try { rpc.destroy().catch(() => { }); } catch (e) { }
+        rpc = null;
+    }
+
+    console.log('[RPC] Attempting connection...');
+    createRpcClient();
+
+    rpc.login({ clientId: CLIENT_ID }).catch((err) => {
+        console.log('[RPC] Login failed:', err.message);
+        // Login failed (Discord not running or still starting)
+        scheduleReconnect();
     });
 }
 
 function disconnectRpc() {
-    if (rpc) {
-        rpc.clearActivity().catch(() => { });
-        rpc.destroy().catch(() => { });
-        rpc = null;
-        isConnected = false;
-        sendToRenderer('rpc-status', { connected: false });
+    if (reconnectTimer) {
+        clearTimeout(reconnectTimer);
+        reconnectTimer = null;
     }
+    if (rpc) {
+        try { rpc.clearActivity().catch(() => { }); } catch (e) { }
+        try { rpc.destroy().catch(() => { }); } catch (e) { }
+        rpc = null;
+    }
+    isConnected = false;
+    sendToRenderer('rpc-status', { connected: false });
 }
 
 function updateActivity() {
